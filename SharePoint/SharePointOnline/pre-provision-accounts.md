@@ -102,7 +102,7 @@ $i = 0
 $j = 0
 
 #Get licensed users
-$users = Get-MgUser -All | Where-Object { $_.islicensed -eq $true }
+$users = Get-MgUser -All -Filter "assignedLicenses/`$count ne 0" -ConsistencyLevel eventual -CountVariable Records
 #total licensed users
 $count = $users.count
 
